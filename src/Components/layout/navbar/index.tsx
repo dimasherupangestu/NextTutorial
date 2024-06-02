@@ -12,8 +12,7 @@ export const Navbar = () => {
           alignItems: "center",
           padding: "5px 5%",
           color: "white",
-        }}
-      >
+        }}>
         <h3>Next Tutorial</h3>
       </div>
     </>

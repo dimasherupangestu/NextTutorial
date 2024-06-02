@@ -1,7 +1,12 @@
-import React from "react";
+import ProdukView from "@/view/produk/ProdukView";
+import React, { useEffect, useState } from "react";
 
 const Produk = () => {
-  return <div>ini Produk</div>;
+  return (
+    <>
+      <ProdukView />
+    </>
+  );
 };
 
 export default Produk;
