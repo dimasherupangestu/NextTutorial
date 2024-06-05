@@ -6,6 +6,7 @@ import {
   getDocs,
   getFirestore,
   query,
+  updateDoc,
   where,
 } from "firebase/firestore";
 import app from "./firebase";
@@ -86,6 +87,46 @@ export async function signUp(
       callbacks({
         status: false,
         message: "Error during registration", // Perbaiki pesan kesalahan
+      });
+    }
+  }
+}
+
+export async function signInWithGoogle(userData: any, callbacks: any) {
+  const quer = query(
+    collection(firestore, "users"),
+    where("email", "==", userData.email)
+  );
+  const snapShot = await getDocs(quer);
+  const data = snapShot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  }));
+  if (data.length > 0) {
+    await updateDoc(doc(firestore, "users", data[0].id), userData).then(() => {
+      callbacks({
+        status: true,
+        message: "Login With Google Success",
+        data: userData,
+      }).catch((err: any) => {
+        callbacks({
+          status: false,
+          message: err,
+        });
+      });
+    });
+  } else {
+    try {
+      await addDoc(collection(firestore, "users"), userData);
+      callbacks({
+        status: true,
+        message: "Login With Google Success",
+        data: userData,
+      });
+    } catch (err) {
+      callbacks({
+        status: false,
+        message: "sign In With Google Error", // Perbaiki pesan kesalahan
       });
     }
   }

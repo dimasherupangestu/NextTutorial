@@ -1,4 +1,5 @@
 import axios from "axios";
+import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
@@ -37,10 +38,12 @@ const ProdukView = () => {
           {isLoding ? (
             produk.map((item: ProdukType) => (
               <Link href={`/produk/${item.id}`} key={item.name}>
-                <img
+                <Image
                   className="rounded-sm w-52 h-52"
                   src={item.image}
                   alt={item.name}
+                  width={250}
+                  height={250}
                 />
                 <h1 className="font-bold text-l">{item.name}</h1>
                 <p className="text-sm my-2 text-gray-500">{item.category}</p>

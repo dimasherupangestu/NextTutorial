@@ -1,4 +1,5 @@
 import { signIn, signOut, useSession } from "next-auth/react";
+import Image from "next/image";
 import React from "react";
 
 export const Navbar = () => {
@@ -20,7 +21,16 @@ export const Navbar = () => {
         }}>
         <h3>Next Tutorial</h3>
 
-        <div className="flex ">
+        <div className="flex items-center gap-4">
+          {data?.user?.image && (
+            <Image
+              width={100}
+              height={100}
+              className="rounded-full w-7 h-7"
+              src={data.user?.image}
+              alt={data.user?.name}
+            />
+          )}
           {data?.user && (
             <h3 className="text-white mr-5">{data.user?.fullname}</h3>
           )}

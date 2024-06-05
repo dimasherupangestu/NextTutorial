@@ -31,7 +31,7 @@ const LoginView = () => {
       <div className="flex justify-center  align-center w-full h-screen">
         <div className="flex justify-center items-center flex-col">
           <h1 className="font-bold text-2xl mb-3">Login</h1>
-          <div className="w-[350px] h-[330px] bg-slate-800 text-white p-5 rounded-md shadow-md pb-2">
+          <div className="w-[350px] h-auto bg-slate-800 text-white p-5 rounded-md shadow-md pb-4">
             <form onSubmit={handleRegister}>
               <label htmlFor="email">Email :</label>
               <input
@@ -55,13 +55,22 @@ const LoginView = () => {
                 className="bg-slate-200 text-black mt-3 font-bold w-full py-1 px-4 rounded-sm">
                 Login
               </button>
-              <p className="text-white mt-3 pb-2 text-center">
-                Dont have an account ?
-                <Link href={"/auth/register"}>
-                  <span className="text-blue-500">register</span>
-                </Link>
-              </p>
             </form>
+            <p className="text-white mt-3 pb-2 text-center">
+              Dont have an account ?
+              <Link href={"/auth/register"}>
+                <span className="text-blue-500">register</span>
+              </Link>
+            </p>
+
+            <p className="text-white text-center">Or login with</p>
+            <button
+              className="bg-green-500 text-black mt-3 font-bold w-full py-1 px-4 rounded-sm"
+              onClick={() =>
+                signIn("google", { callbackUrl, redirect: false })
+              }>
+              Google
+            </button>
           </div>
         </div>
       </div>
